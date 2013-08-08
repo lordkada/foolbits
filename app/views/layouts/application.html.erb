@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Foolbits</title>
+    <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+    <%= javascript_include_tag "forge/jsbn" %>
+    <%= javascript_include_tag "forge/aes.js"%>
+    <%= javascript_include_tag "forge/asn1.js"%>
+    <%= javascript_include_tag "forge/oids.js"%>
+    <%= javascript_include_tag "forge/pkcs1.js"%>
+    <%= javascript_include_tag "forge/sha1.js"%>
+    <%= javascript_include_tag "forge/rsa.js"%>
+    <%= javascript_include_tag "forge/util.js"%>
+    <%= javascript_include_tag "forge/pki.js"%>
+    <%= javascript_include_tag "forge/prng.js"%>
+    <%= javascript_include_tag "forge/random.js"%>
+    <%= javascript_include_tag "forge/pbkdf2.js"%>
+    <%= javascript_include_tag "forge/hmac.js"%>
+    <%= javascript_include_tag "forge/pem.js"%>
+    <%= javascript_include_tag "crypto" %>
+
+    <%= csrf_meta_tags %>
+</head>
+<body>
+
+<%= yield %>
+
+</body>
+</html>
