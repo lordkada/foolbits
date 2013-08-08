@@ -19,7 +19,7 @@ module Foolbits
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
-    config.assets.precompile += ["forge/jsbn.js", "forge/aes.js", "forge/asn1", "forge/oids.js", "forge/pkcs1.js", "forge/sha1.js",  "forge/rsa.js", "forge/util.js", 
+    config.assets.precompile += ["forge/jsbn.js", "forge/aes.js", "forge/asn1.js", "forge/oids.js", "forge/pkcs1.js", "forge/sha1.js",  "forge/rsa.js", "forge/util.js", 
         "forge/pki.js", "forge/prng.js", "forge/random.js", "forge/pbkdf2.js", "forge/hmac.js", "forge/pem.js", "crypto.js",]
   end
 end
