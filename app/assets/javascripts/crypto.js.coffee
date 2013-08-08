@@ -6,7 +6,7 @@
 salt = "this is blood of soul"
 
 generate_key = (passphrase) ->
-    key = forge.pkcs5.pbkdf2 passphrase, salt, 10000, 256
+    key = forge.pkcs5.pbkdf2 passphrase, salt, 10000, 32
 
 encrypt = (url, key) ->
     if url? && key?
