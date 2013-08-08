@@ -1,7 +1,7 @@
 ###
     (c) 2013 by Lord Kada
     The forge project (https://github.com/digitalbazaar/forge) uses strings to store data (such as keys or encrypted data) while 
-    the XMLHttpRequest to access binary files prefer the "typed arrays" way
+    the XMLHttpRequest/arraybuffer uses the "typed arrays" way
 ###
 salt = "this is blood of soul"
 
