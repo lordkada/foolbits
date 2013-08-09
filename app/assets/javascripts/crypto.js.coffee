@@ -8,48 +8,54 @@ salt = "this is blood of soul"
 generate_key = (passphrase) ->
     key = forge.pkcs5.pbkdf2 passphrase, salt, 10000, 32
 
-encrypt = (url, key) ->
+encrypt = (url, key, callback) ->
     if url? && key?
-        xhr = new XMLHttpRequest()
-        xhr.open 'GET', url, true
-        xhr.responseType = 'arraybuffer'
-        xhr.onreadystatechange = (e) ->
-            if xhr.readyState is 4                
-                cipher = forge.aes.createEncryptionCipher key, 'CBC'
-                iv = forge.random.getBytesSync 16
-                cipher.start iv
+        try
+            xhr = new XMLHttpRequest()
+            xhr.open 'GET', url, true
+            xhr.responseType = 'arraybuffer'
+            xhr.onreadystatechange = (e) ->
+                if xhr.readyState is 4 
+                    try               
+                        cipher = forge.aes.createEncryptionCipher key, 'CBC'
+                        iv = forge.random.getBytesSync 16
+                        cipher.start iv
 
-                to_encrypt = uint8array_to_string(new Uint8Array(xhr.response))
-                cipher.update forge.util.createBuffer(to_encrypt)
-                cipher.finish()
-                
-                encrypted = cipher.output.data
-                blob = new Blob([string_to_uint8array(iv), string_to_uint8array(encrypted)], {type: "text/plain"})
-                encrypted_url = window.URL.createObjectURL(blob) 
+                        to_encrypt = uint8array_to_string(new Uint8Array(xhr.response))
+                        cipher.update forge.util.createBuffer(to_encrypt)
+                        cipher.finish()
+                        
+                        encrypted = cipher.output.data
+                        blob = new Blob([string_to_uint8array(iv), string_to_uint8array(encrypted)], {type: "text/plain"})
+                        encrypted_url = window.URL.createObjectURL(blob) 
 
-                console.log "encrypted url is: #{encrypted_url}"
-        xhr.send()
+                        callback null, encrypted_url
+                    catch err
+                        callback err
+            xhr.send()
+        catch err
+            callback err
     else
         console.log "should provide a url and a passphrase!"
 
-decrypt = (url, key) ->
+decrypt = (url, key, callback) ->
     xhr = new XMLHttpRequest()
     xhr.open 'GET', url, true
     xhr.responseType = 'arraybuffer'
     xhr.onreadystatechange = (e) ->
         if xhr.readyState is 4
-            load = uint8array_to_string(new Uint8Array(xhr.response))
-            
-            iv = load.slice(0,16)
-            console.log "iv hex: #{forge.util.bytesToHex(iv)}"
-            cipher = forge.aes.createDecryptionCipher key, 'CBC'
-            cipher.start iv
-            encrypted = load.slice(16)
-            console.log "encrypted length: #{encrypted.length}"
-            cipher.update forge.util.createBuffer(encrypted)
-            cipher.finish()
+            try
+                load = uint8array_to_string(new Uint8Array(xhr.response))
+                iv = load.slice(0,16)
+                cipher = forge.aes.createDecryptionCipher key, 'CBC'
+                cipher.start iv
+                encrypted = load.slice(16)
+                cipher.update forge.util.createBuffer(encrypted)
+                cipher.finish()
 
-            window.open window.URL.createObjectURL new Blob([string_to_uint8array(cipher.output.data)], {type: 'binary/octet-stream'})
+                callback null, new Blob([string_to_uint8array(cipher.output.data)], {type: 'binary/octet-stream'})
+            catch err
+                callback err
     xhr.send()
 
 string_to_uint8array = (string) ->
@@ -76,36 +82,40 @@ buffer_to_uint8array = (buffer) ->
         ui8arr[i] = buffer.getInt(1)
     ui8arr
 
-
 all_tests = () ->
     run test
     run test2
+    run test_crypt
 
 run = (test) ->
-    if test()
-        console.log "ok"
-    else
-        console.log "failed"
+    test (res, msg) ->
+        if res
+            console.log "ok"
+        else
+            console.log "failed: #{msg}"
 
-test = () ->
+test = (callback) ->
     for i in [0..999]
         a = forge.random.getBytesSync 16
         h1 = forge.util.bytesToHex a
         h2 = forge.util.bytesToHex(uint8array_to_string(string_to_uint8array(a)))
-        if h1 isnt h2
-            console.log "Error: #{h1} -- NOT EQUAL -> #{h2}" 
-            return false
-    true
+        return callback false, "Error: #{h1} -- NOT EQUAL -> #{h2}" if h1 isnt h2
+    callback true
 
-test2 = () ->
+test2 = (callback) ->
     for i in [0..999]
         a = forge.random.getBytesSync 16
         h1 = forge.util.bytesToHex a
         h2 = forge.util.bytesToHex(uint8array_to_string(buffer_to_uint8array(forge.util.createBuffer(a))))
-        if h1 isnt h2
-            console.log "Error: #{h1} -- NOT EQUAL -> #{h2}" 
-            return false
-    true
+        return callback false, "Error: #{h1} -- NOT EQUAL -> #{h2}" if h1 isnt h2
+    callback true
+
+test_crypt = (callback) ->
+    key = generate_key "test" 
+    encrypt "http://www.opinionage.com", key, (err,out) ->
+        return callback err if err?    
+        decrypt out, key, (err, out) ->
+            callback !err? and out?
 
 window.generate_key = generate_key
 window.encrypt = encrypt
