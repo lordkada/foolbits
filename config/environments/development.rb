@@ -26,4 +26,8 @@ Foolbits::Application.configure do
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
   config.assets.debug = true
+
+  ENV['FACEBOOK_KEY'] = '617674131586410'
+  ENV['FACEBOOK_SECRET'] = 'a3862b8a6b02fc02e1cf142d4a1d5a88'
+
 end
