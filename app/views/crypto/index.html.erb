@@ -3,3 +3,9 @@
 <p>
     <span>the fire is under the ashes</span>
 </p>
+
+<% if signed_in? %>
+  # Links for signed-in users
+<% else %>
+  # Links for non-signed-in-users
+<% end %>
