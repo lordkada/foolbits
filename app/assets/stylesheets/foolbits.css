@@ -1,0 +1,8 @@
+#wrap > .container {
+    padding-top: 60px;
+}
+
+.user-image {
+    height: 40px;
+    width: 40px;
+}

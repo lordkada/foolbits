@@ -22,6 +22,12 @@ class SessionsController < ApplicationController
 
   end
 
+  def destroy
+    sign_out
+
+    redirect_to '/'
+  end
+
   protected
 
   def auth_hash

@@ -1,11 +1,7 @@
-<h1>Crypto#index</h1>
+<div class="page-header">
+    <h1>Your vault.</h1>
+</div>
 
-<p>
-    <span>the fire is under the ashes</span>
-</p>
-
-<% if signed_in? %>
-  # Links for signed-in users
-<% else %>
-  # Links for non-signed-in-users
+<% if not signed_in? %>
+  <a href="/auth/facebook">Login with Facebook</a>
 <% end %>
