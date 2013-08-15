@@ -27,7 +27,7 @@ init = (selector) ->
             keypair = forge.rsa.generateKeyPair {bits: 2136, e: 0x10001}
 
             encrypted_key = forge.pki.encryptRsaPrivateKey keypair.privateKey, passphrase
-            step2_element.append("<p>Ok, done...!<p> '#{passphrase}'")
+            step2_element.append("<p>Ok, done...!<p>")
             setTimeout () ->
                 
                 step2_element.append("<p>Updating your profile....<p>")
