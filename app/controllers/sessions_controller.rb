@@ -14,18 +14,22 @@ class SessionsController < ApplicationController
             user.email = info.email if user.email.nil?
             user.picture_url = info.image if user.picture_url.nil?
 
+            user.facebook_id = auth_hash.uid if user.facebook_id.nil?
+            user.facebook_access_token = auth_hash.credentials.token if auth_hash.credentials.token != user.facebook_access_token
+
             user.save! if user.changed?
             sign_in user 
     end
-
     redirect_to '/'
-
   end
 
   def destroy
     sign_out
-
     redirect_to '/'
+  end
+
+  def get
+    render json: current_user
   end
 
   protected

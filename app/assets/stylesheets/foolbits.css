@@ -6,3 +6,23 @@
     height: 40px;
     width: 40px;
 }
+
+#setup .btn.progress {
+    width: 200px;
+    position: relative;
+}
+
+#setup .btn.progress .status {
+    width: 100%;
+    display: inline-block;
+    position: absolute;
+    left: 0;
+    color: gray;
+    z-index: 1;
+}
+
+#setup .btn.progress .bar {
+    position: relative;
+    background-color: rgb(144, 212, 246);
+    background-image: none;
+}
