@@ -8,6 +8,35 @@ salt = "this is blood of soul"
 generate_key = (passphrase) ->
     key = forge.pkcs5.pbkdf2 passphrase, salt, 10000, 32
 
+encrypt_text = (text, publicKey) ->
+    key = forge.random.getBytesSync 32
+    iv = forge.random.getBytesSync 16
+    cipher = forge.aes.createEncryptionCipher key, 'CBC'
+    cipher.start iv    
+    cipher.update forge.util.createBuffer text
+    cipher.finish()
+    encrypted = cipher.output.data
+    encrypted_key = publicKey.encrypt key, 'RSA-OAEP'
+    #console.log "encrypted_key: #{encrypted_key}"
+    #console.log "iv: #{iv}"
+    #console.log "encrypted: #{encrypted}"
+    forge.util.encode64(encrypted_key + iv + encrypted)
+     
+decrypt_text = (encrypted_base_64_text, privateKey) ->
+    encrypted_text = forge.util.decode64 encrypted_base_64_text
+    encrypted_key = encrypted_text.slice(0,267)
+    iv = encrypted_text.slice(267,283)
+    encrypted = encrypted_text.slice(283)
+    #console.log "encrypted_key: #{encrypted_key}"
+    #console.log "iv: #{iv}"
+    #console.log "encrypted: #{encrypted}"
+    key = privateKey.decrypt encrypted_key, 'RSA-OAEP'
+    cipher = forge.aes.createDecryptionCipher key, 'CBC'
+    cipher.start iv
+    cipher.update forge.util.createBuffer encrypted
+    cipher.finish()
+    cipher.output.data
+
 encrypt = (url, key, callback) ->
     if url? && key?
         try
@@ -116,3 +145,8 @@ test_crypt = (callback) ->
         return callback err if err?    
         decrypt out, key, (err, out) ->
             callback !err? and out?
+
+window.crypto_utils =
+    encrypt_text: encrypt_text
+    decrypt_text: decrypt_text
+    string_to_uint8array: string_to_uint8array

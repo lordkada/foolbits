@@ -7,7 +7,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :facebook_id, limit: 25
       t.string :facebook_access_token, limit: 255
       t.string :picture_url, limit: 255
-      t.binary :vault
+      t.text   :vault
       t.timestamps
     end
     add_index :users, :facebook_id, :unique => true

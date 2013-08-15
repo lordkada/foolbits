@@ -6,6 +6,9 @@ Foolbits::Application.routes.draw do
   get 'user', to: 'sessions#get'
 
   get 'setup', to: "crypto#setup"
+  get 'vault', to: "crypto#vault"
+  post 'keypair', to: "crypto#keypair"
+  put 'vault', to: "crypto#set_vault"
   
   root 'crypto#index'
 

@@ -1,3 +1,20 @@
-<div class="page-header">
-    <h1>Your vault.</h1>
+<div id="vault">
+    <div class="page-header">
+        <h1>Your vault <span data-id="lock-status" class="pull-right">click here to lock the screen again<i class="icon-unlock"></i></span></h1>
+    </div>
+    <div data-id="locked" style="display:none;">
+        <div>
+            <i class="icon-lock"></i>
+        </div>
+        <input type="password" placeholder="Type your secret passphrase to unlock">
+    </div>
+    <div data-id="unlocked" style="display:none;">
+        <textarea></textarea>
+    </div>
 </div>
+
+<script type="text/javascript">
+    $(document).ready( function() { 
+        vault("#vault");
+    });
+</script>

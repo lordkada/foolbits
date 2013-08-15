@@ -26,3 +26,51 @@
     background-color: rgb(144, 212, 246);
     background-image: none;
 }
+
+#setup .step1 {
+    overflow: hidden;
+}
+
+[data-id="lock-status"]  {
+    font-size: 14px;
+    font-weight: normal;
+}
+
+[data-id="lock-status"] i {
+    font-size: 38.5px;
+    margin-left: 10px;
+}
+
+
+[data-id="locked"] {
+    position: relative;
+}
+
+[data-id="locked"] i.icon-lock {
+    font-size: 72px;
+    color: green;
+    position: absolute;
+    left: 50%;
+}
+
+[data-id="locked"] input {
+    position: absolute;
+    left: 34%;
+    width: 40%;
+    top: 75px;
+}
+
+#vault .icon-unlock {
+    color: darkred;
+} 
+
+[data-id="unlocked"] textarea {
+    margin: 0px 0px 10px;
+    width: 668px;
+    height: 500px;
+    border: 10px dashed darkred;
+    resize: none;
+    padding: 15px;
+    font-size: 15px;
+    color: lightgray;
+}

@@ -1,16 +1,30 @@
 <div id="setup">
-    <div class="page-header">
-        <h1>Write your super-secret passphrase</h1>
-        <p>Tips: don't use your names, addresses, birthdates or similar... words mixing special chars, numbers are better!</p>
-    </div>
-    <div class="input-append">
-        <input type="password" placeholder="Type a passphrase">
-        <div class="btn progress">
-            <div class="status"></div>
-            <div class="bar" style="width: 0%;"></div>
+    <div class="step1">
+        <div class="page-header">
+            <h1>Write your super-secret passphrase</h1>
+            <p>Tips: 
+                <ul>
+                    <li>don't use your names, addresses, birthdates or similar... words mixing special chars, numbers are better!</li>
+                    <li>don't share with anybody, don't write anywhere... </li>
+                    <li>this passphrase won't be saved by us or by your device in any case... so be sure to keep it in mind!</li>
+                </ul>
+            </p>
+        </div>
+        <div class="input-append">
+            <input type="password" placeholder="Type a passphrase">
+            <div class="btn progress">
+                <div class="status"></div>
+                <div class="bar" style="width: 0%;"></div>
+            </div>
+            <button data-id="ok-passphrase" class="btn btn-primary" type="button" disabled>Ok</button>
         </div>
     </div>
-
+    <div class="step2" style="display:none;">
+        <div class="page-header">
+            <h1>Generating your keypairs...</h1>
+            <p>In very few seconds your vault willl be ready!</p>
+        </div>
+    </div>
 </div>
 
 <script type="text/javascript">

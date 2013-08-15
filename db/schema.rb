@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20130815071100) do
     t.string   "facebook_id",           limit: 25
     t.string   "facebook_access_token"
     t.string   "picture_url"
-    t.binary   "vault"
+    t.text     "vault"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "remember_token"

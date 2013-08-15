@@ -34,6 +34,8 @@ gem "omniauth", "~> 1.1.4"
 
 gem 'omniauth-facebook'
 
+gem "font-awesome-rails"
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
