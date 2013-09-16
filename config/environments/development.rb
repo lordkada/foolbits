@@ -27,7 +27,4 @@ Foolbits::Application.configure do
   # number of complex assets.
   config.assets.debug = true
 
-  ENV['FACEBOOK_KEY'] = '455753264522441'
-  ENV['FACEBOOK_SECRET'] = '2c183e5d99d0e4bf466679f555f92fcf'
-
 end

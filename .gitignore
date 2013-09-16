@@ -7,3 +7,6 @@ dump.rdb
 /log/*.log
 /tmp
 /vendor/bundle
+
+# Ignore application configuration
+/config/application.yml

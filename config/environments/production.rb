@@ -78,7 +78,4 @@ Foolbits::Application.configure do
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
 
-  ENV['FACEBOOK_KEY'] = '617674131586410'
-  ENV['FACEBOOK_SECRET'] = 'a3862b8a6b02fc02e1cf142d4a1d5a88'
-
 end
