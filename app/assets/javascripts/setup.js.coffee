@@ -12,6 +12,8 @@ init = (selector) ->
     retype_element = $(selector).find("[data-id='retype-passphrase']")
     progress_bar_element = $(selector).find(".progress .progress-bar")
     status_element = $(selector).find(".progress .progress-bar .sr-only")
+    weak_alert_element = $(selector).find("[data-id='weak_passphrase_alert']")
+
     ok_button_element = $(selector).find("[data-id='ok-passphrase']")
 
     step2_keypair_element =  $(selector).find(".step2 [data-id='step2_keypair']")
@@ -19,7 +21,12 @@ init = (selector) ->
     step2_done_element =  $(selector).find(".step2 [data-id='step2_done']")
 
     refresh_ui = () ->
-        ok_button_element.css "visibility", if passphrase? and passphrase is retype and strength.score > 30 then "visible" else "hidden"
+        if passphrase? and passphrase is retype
+            ok_button_element.css "visibility", "visible"
+            weak_alert_element.toggle(strength.score < 30)
+        else
+            ok_button_element.css "visibility", "hidden"
+        
 
     input_element.keyup () ->
         passphrase = input_element.val()

@@ -4,7 +4,6 @@ img.user {
 }
 
 [data-id="setup"] div.progress {
-  padding: 0 0 20px 0;
   height: 34px;
   background-image: none;
   background-color: white;
@@ -16,6 +15,7 @@ img.user {
   height: 34px;
   background-color: lightgray;
   background-image: none;
+  box-shadow: none;
 }
 
 [data-id="setup"] .btn.progress {
@@ -45,7 +45,7 @@ img.user {
   padding-left: 20px;
   clip: auto;
   overflow: visible;
-  left: 0%;
+  left: 32%;
   padding-left: 20px;
 }
 
@@ -224,6 +224,13 @@ div.carousel-caption {
 
 /* RESPONSIVE CSS
 -------------------------------------------------- */
+@media (max-width: 1199px) {
+
+    [data-id="setup"] .sr-only {
+    left: 45%;
+  }
+
+}
 
 @media (min-width: 768px) {
 
