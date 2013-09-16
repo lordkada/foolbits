@@ -1,5 +1,115 @@
-<% if signed_in? %>
-    <div class="content"></div>
+<% if signed_in? %>    
+  <div class="container marketing">
+  </div>
 <% else %>
-  <a href="/auth/facebook">Login with Facebook</a>
+
+    <!-- Carousel
+    ================================================== -->
+    <div id="myCarousel" class="carousel slide">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+      </ol>
+      <div class="carousel-inner">
+        <div class="item active">
+          <img style="height: 500px; width: 100%; display: block;background-image: url('http://upload.wikimedia.org/wikipedia/commons/8/87/WinonaSavingsBankVault.JPG');background-position: initial;background-repeat: no-repeat;background-position-x: 50%;background-size: cover;">
+          <div class="container">
+            <div class="carousel-caption">
+              <h1>What if your laptop with your passwords is lost?</h1>
+              <p>Protect your secret codes in a super secure digital vault. <br/>No one will read it<br/></p>
+              <p><a class="btn btn-large btn-primary" href="/auth/facebook">Sign up for free!</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <img style="height: 500px; width: 100%; display: block;background-image: url('http://creditunionnewmexico.org/wp-content/uploads/2013/05/vacation1.jpg');background-position: initial;background-repeat: no-repeat;background-position-x: 50%;background-size: cover;">
+          <div class="container">
+            <div class="carousel-caption">
+              <h1>Need to access your online banking from the beach?</h1>
+              <p>It does not matter if your are at home or on vacation. <br/>Your secret codes are always at your fingertips</p>
+              <p><a class="btn btn-large btn-primary" href="/auth/facebook">Sign up for free!</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+      <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+    </div><!-- /.carousel -->
+
+
+
+    <!-- Marketing messaging and featurettes
+    ================================================== -->
+    <!-- Wrap the rest of the page in another container to center all the content. -->
+
+    <div class="container marketing">
+
+      <!-- Three columns of text below the carousel -->
+      <div class="row">
+        <div class="col-lg-4">
+          <img class="img-circle" src="http://www.aloa.bz/Mesa_Products/images/combination-lock-icon.jpg" data-src="holder.js/140x140" alt="Secure" style="height: 140px;">
+          <h2>Secure</h2>
+          <p>Your privacy is protected by the best-of-breed technologies in cryptography</p>
+          <p><a class="btn btn-default" href="#">View details »</a></p>
+        </div><!-- /.col-lg-4 -->
+        <div class="col-lg-4">
+          <img class="img-circle" src="http://images2.wikia.nocookie.net/__cb20100430203355/nonciclopedia/images/thumb/8/8f/Tris.svg/522px-Tris.svg.png" data-src="holder.js/140x140" alt="140x140" style="width: 140px; height: 140px;">
+          <h2>Easy</h2>
+          <p>No software to install</p>
+          <p><a class="btn btn-default" href="#">View details »</a></p>
+        </div><!-- /.col-lg-4 -->
+        <div class="col-lg-4">
+          <img class="img-circle" src="http://www.brinksoftware.com/images/features/cloud.jpg" data-src="holder.js/140x140" alt="140x140" style="height: 140px;">
+          <h2>Cloud-based</h2>
+          <p>Your secret codes are stored in the cloud. It means that </p>
+          <p><a class="btn btn-default" href="#">View details »</a></p>
+        </div><!-- /.col-lg-4 -->
+      </div><!-- /.row -->
+
+
+      <!-- START THE FEATURETTES -->
+
+      <hr class="featurette-divider">
+
+      <div class="row featurette">
+        <div class="col-md-7">
+          <h2 class="featurette-heading">First featurette heading. <span class="text-muted">It'll blow your mind.</span></h2>
+          <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+        </div>
+        <div class="col-md-5">
+          <img class="featurette-image img-responsive" src="" data-src="holder.js/500x500/auto" alt="500x500">
+        </div>
+      </div>
+
+      <hr class="featurette-divider">
+
+      <div class="row featurette">
+        <div class="col-md-5">
+          <img class="featurette-image img-responsive" src="" data-src="holder.js/500x500/auto" alt="500x500">
+        </div>
+        <div class="col-md-7">
+          <h2 class="featurette-heading">Oh yeah, it's that good. <span class="text-muted">See for yourself.</span></h2>
+          <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+        </div>
+      </div>
+
+      <hr class="featurette-divider">
+
+      <div class="row featurette">
+        <div class="col-md-7">
+          <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
+          <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+        </div>
+        <div class="col-md-5">
+          <img class="featurette-image img-responsive" src="" data-src="holder.js/500x500/auto" alt="500x500">
+        </div>
+      </div>
+
+      <hr class="featurette-divider">
+
+      <!-- /END THE FEATURETTES -->
+
+
 <% end %>

@@ -1,5 +1,5 @@
-$.ready = () ->
-    content = $("[data-role='content']")
+$(document).ready () ->
+    content = $(".container.marketing")
     $.get "/user", (user) ->
         window.user = user
         if user?

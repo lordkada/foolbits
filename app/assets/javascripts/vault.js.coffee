@@ -5,51 +5,103 @@ init = (selector) ->
     unlocked_textarea_element = unlocked_panel_element.find("textarea")
     unlocked_status = $(selector).find("[data-id='lock-status']")
     passphrase_element = locked_panel_element.find("input")
+    vault_data_element = $(selector).find("[data-id='vault_data']")
+    pending_changes_element = $(selector).find("[data-id='pending_changes']")
+
+    save_element = $(selector).find("[data-id='lock-save']")
+    edit_element = $(selector).find("[data-id='lock-edit']")
+    lock_element = $(selector).find("[data-id='lock-lock']")
+
     publicKey = null
     privateKey = null
+    to_save_flag = false
+    editing_flag = false
+
+    toggle = (element, flag) ->
+        element.css "visibility", if flag then "visible" else "hidden"
+
+    reset_vault = () ->
+        publicKey = null
+        privateKey = null
+        passphrase_element.val ""
+        unlocked_textarea_element.val ""
+        to_save_flag = false
+        editing_flag = false
+        show_locked_vault()
+
+    refresh_ui = () ->
+        toggle save_element, to_save_flag
+        toggle edit_element, !editing_flag
 
     show_locked_vault = () ->
         unlocked_panel_element.fadeOut () ->
             locked_panel_element.fadeIn()
-            unlocked_status.hide()
-
-    show_unlocked_vault = () ->
-        locked_panel_element.fadeOut () ->
-            unlocked_panel_element.fadeIn()
-            unlocked_status.show()
-
-            if user.vault?
-                decrypted = window.crypto_utils.decrypt_text user.vault, privateKey
-                unlocked_textarea_element.val decrypted
-
 
     passphrase_element.change () ->
         passphrase = passphrase_element.val()
         privateKey = forge.pki.decryptRsaPrivateKey user.private_key.toString(), passphrase
         if privateKey?
             publicKey = forge.pki.publicKeyFromPem user.public_key
-            console.log "publicKey is #{publicKey}"
             show_unlocked_vault()
 
-    unlocked_textarea_element.change () ->
+    show_data_vault = () ->
+        console.log editing_flag
+        if editing_flag
+            unlocked_textarea_element.prop "readonly", null
+        else
+            unlocked_textarea_element.prop "readonly", true
+
+    show_unlocked_vault = () ->
+        locked_panel_element.fadeOut () ->
+            unlocked_panel_element.fadeIn()
+            decrypted = window.crypto_utils.decrypt_text(user.vault, privateKey) if user.vault?
+            unlocked_textarea_element.val decrypted
+            show_data_vault()
+            refresh_ui()
+
+    save = (callback) ->
         if privateKey?
-            text = unlocked_textarea_element.val()
-            encrypted = crypto_utils.encrypt_text text, publicKey
-            console.log encrypted
+            console.log "saving..."
+            encrypted = crypto_utils.encrypt_text unlocked_textarea_element.val(), publicKey
             $.ajax
                 url: 'vault'
                 type: 'PUT'
                 data: 
                     vault: encrypted
-            , (result) ->
-                console.log result 
+            .done (result) ->
+                if result.status is "ok"
+                    to_save_flag = false
+                    user.vault = encrypted
+                callback result.status
 
-    unlocked_status.click () ->
-        publicKey = null
-        privateKey = null
-        unlocked_textarea_element.val ""
-        location.reload()
+    lock_element.click () ->
+        if to_save_flag
+            pending_changes_element.modal()           
+        else
+            reset_vault()
 
-    show_locked_vault()
+    save_element.click () ->
+        save () ->
+            refresh_ui()
+
+    edit_element.click () ->
+        editing_flag = !editing_flag
+        show_data_vault()
+        refresh_ui()
+
+    unlocked_textarea_element.keyup () ->
+        to_save_flag = true
+        refresh_ui()
+
+    pending_changes_element.find("[data-id='discard']").click () ->
+        reset_vault()
+
+    pending_changes_element.find("[data-id='save']").click () ->
+        save (result) ->
+            console.log result
+            if result is "ok"
+                reset_vault()                
+
+    reset_vault()
 
 window.vault = init

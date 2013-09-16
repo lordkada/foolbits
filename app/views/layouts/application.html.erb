@@ -4,11 +4,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= content_for?(:title) ? yield(:title) : "Foolbits" %></title>
+    <title><%= content_for?(:title) ? yield(:title) : "Foolbits, your vault." %></title>
     <%= csrf_meta_tags %>
 
-
-    <%= javascript_include_tag "http://codeorigin.jquery.com/jquery-2.0.3.min.js" %>
+    <%= javascript_include_tag "jquery-2.0.3.min.js" %>
 
     <%= javascript_include_tag "forge/jsbn" %>
     <%= javascript_include_tag "forge/aes.js"%>
@@ -30,12 +29,12 @@
     <%= javascript_include_tag "setup" %>
     <%= javascript_include_tag "vault" %>
 
+    <%= stylesheet_link_tag "application", :media => "all" %>
+
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
     <!--[if lt IE 9]>
       <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.1/html5shiv.js" type="text/javascript"></script>
     <![endif]-->
-
-    <%= stylesheet_link_tag "application", :media => "all" %>
 
     <!-- For third-generation iPad with high-resolution Retina display: -->
     <!-- Size should be 144 x 144 pixels -->
@@ -57,102 +56,71 @@
     <!-- Size should be 32 x 32 pixels -->
     <%= favicon_link_tag 'favicon.ico', :rel => 'shortcut icon' %>
 
-    <style type="text/css">
+    <%= stylesheet_link_tag href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" %>
+    <%= javascript_include_tag src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js" %>
+    <%= stylesheet_link_tag href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css" %>
 
-      /* Sticky footer styles
-      -------------------------------------------------- */
+    <style id="holderjs-style" type="text/css">.holderjs-fluid {font-size:16px;font-weight:bold;text-align:center;font-family:sans-serif;margin:0}</style>
 
-      html,
-      body {
-        height: 100%;
-        /* The html and body elements cannot have any padding or margin. */
-      }
-
-      /* Wrapper for page content to push down footer */
-      #wrap {
-        min-height: 100%;
-        height: auto !important;
-        height: 100%;
-        /* Negative indent footer by it's height */
-        margin: 0 auto -60px;
-      }
-
-      /* Set the fixed height of the footer here */
-      #push,
-      .footer {
-        height: 60px;
-      }
-      .footer {
-        background-color: #f5f5f5;
-      }
-
-      /* Lastly, apply responsive CSS fixes as necessary */
-      @media (max-width: 767px) {
-        .footer {
-          margin-left: -20px;
-          margin-right: -20px;
-          padding-left: 20px;
-          padding-right: 20px;
-        }
-      }
-
-
-
-      /* Custom page CSS
-      -------------------------------------------------- */
-      /* Not required for template or sticky footer method. */
-
-      .container {
-        width: auto;
-        max-width: 680px;
-      }
-      .container .credit {
-        margin: 20px 0;
-      }
-
-    </style>
   </head>
-  <body>
+  <body style="">
 
-    <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container-fluid">
-          <a class="brand" href="#">Foolbits</a>
-          <div class="container-fluid nav-collapse pull-right">
+    <div class="navbar-wrapper">
+      <div class="container">
+
+        <div class="navbar navbar-inverse navbar-static-top">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="#">Foolbits</a>
+              <!--<img class="navbar-brand" src="/assets/foolbits_only.png">-->
+            </div>
             <% if signed_in? %>
-            <ul class="nav">
-              <li><img src="<%=current_user.picture_url%>" class="user-image"></li>
-              <li><%=link_to "signout", signout_url %></a></li>
-            </ul>
+              <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                  <li><%=link_to t(:logout), signout_url %></li>
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-cog"></i></a>
+                    <ul class="dropdown-menu">
+                      <li><a href="#">Reset passphrase</a></li>
+                      <li><a href="#">Another action</a></li>
+                      <li><a href="#">Something else here</a></li>
+                      <li class="divider"></li>
+                      <li class="dropdown-header">Nav header</li>
+                      <li><a href="#">Separated link</a></li>
+                      <li><a href="#">One more separated link</a></li>
+                    </ul>
+                  </li>
+                </ul>
+                <img class="user" src="<%=current_user.picture_url%>">
+              </div>
             <% end %>
-          </div><!--/.nav-collapse -->
-
+          </div>
         </div>
+
       </div>
     </div>
 
-    <div id="wrap">
-      <!-- Begin page content -->
-      <div class="container">
-        <%= bootstrap_flash %>
-        <%= yield %>
-      </div>
+    </nav>
 
-      <div id="push"></div>
+    <%= bootstrap_flash %>
+    <%= yield %>
+
+    <div class="container">
+      <nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
+        <a href="https://twitter.com/foolbits" class="twitter-follow-button" data-show-count="false">Follow @foolbits</a>
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+      </nav>
     </div>
 
-    <div class="footer">
-      <div class="container">
-        <p class="muted credit">Ideated & coded by <a href="https://github.com/lordkada">Lord Kada</a> in the spare time! &copy; 2013 by <a href="http://www.opinionage.com/">Opinionage Inc.</a>.</p>
-      </div>
-    </div>
-
-    </div> <!-- /container -->
-
-    <!-- Javascripts
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
     <%= javascript_include_tag "application" %>
 
+    <script type="text/javascript">
+      setTimeout(function () { window.scrollTo(0, 0);}, 1000);
+    </script>
   </body>
 </html>

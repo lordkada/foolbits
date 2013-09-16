@@ -1,7 +1,4 @@
-<div id="vault">
-    <div class="page-header">
-        <h1>Your vault <span data-id="lock-status" class="pull-right">click here to lock the screen again<i class="icon-unlock"></i></span></h1>
-    </div>
+<div data-id="vault">
     <div data-id="locked" style="display:none;">
         <div>
             <i class="icon-lock"></i>
@@ -9,12 +6,35 @@
         <input type="password" placeholder="Type your secret passphrase to unlock">
     </div>
     <div data-id="unlocked" style="display:none;">
+        <ul class="nav nav-pills pull-right bar">
+            <li data-id="lock-save" style="visibility: hidden;"><a><i class="icon-save"></i></a></li>
+            <li data-id="lock-edit" style="visibility: hidden;"><a><i class="icon-pencil"></i></a></li>
+            <li data-id="lock-lock"><a><i class="icon-off"></i></a></li>
+        </ul>
         <textarea></textarea>
+    </div>
+
+    <div id="pending" class="modal fade" data-id="pending_changes" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Pending changes</h4>
+                </div>
+                <div class="modal-body">
+                    <p>There're some changes not saved to your vault</p>
+                </div>
+                <div class="modal-footer">
+                    <button data-id="discard" type="button" class="btn btn-default" data-dismiss="modal">Discard changes</button>
+                    <button data-id="save" type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
 <script type="text/javascript">
     $(document).ready( function() { 
-        vault("#vault");
+        vault("[data-id='vault']");
     });
 </script>
