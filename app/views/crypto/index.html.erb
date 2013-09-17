@@ -1,44 +1,10 @@
-<% if signed_in? %>    
-  <div class="container marketing">
+<% if not signed_in? %>    
+
+  <div class="jumbotron">
+      <h1>Mothball your password text-file</h1>
+      <p class="lead">Put your secret codes in a super-secure vault, always available and everywhere accessible</p>
+      <p><a class="btn btn-lg btn-primary" href="/auth/facebook">Sign up for free!</a></p>
   </div>
-<% else %>
-
-    <!-- Carousel
-    ================================================== -->
-    <div id="myCarousel" class="carousel slide">
-      <!-- Indicators -->
-      <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-      </ol>
-      <div class="carousel-inner">
-        <div class="item active">
-          <img style="height: 500px; width: 100%; display: block;background-image: url('http://upload.wikimedia.org/wikipedia/commons/8/87/WinonaSavingsBankVault.JPG');background-position: initial;background-repeat: no-repeat;background-position-x: 50%;background-size: cover;">
-          <div class="container">
-            <div class="carousel-caption">
-              <h1>What if your laptop with your passwords is lost?</h1>
-              <p>Protect your secret codes in a super secure digital vault. <br/>No one will read it<br/></p>
-              <p><a class="btn btn-large btn-primary" href="/auth/facebook">Sign up for free!</a></p>
-            </div>
-          </div>
-        </div>
-        <div class="item">
-          <img style="height: 500px; width: 100%; display: block;background-image: url('http://creditunionnewmexico.org/wp-content/uploads/2013/05/vacation1.jpg');background-position: initial;background-repeat: no-repeat;background-position-x: 50%;background-size: cover;">
-          <div class="container">
-            <div class="carousel-caption">
-              <h1>Need to access your online banking from the beach?</h1>
-              <p>It does not matter if your are at home or on vacation. <br/>Your secret codes are always at your fingertips</p>
-              <p><a class="btn btn-large btn-primary" href="/auth/facebook">Sign up for free!</a></p>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
-      <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
-    </div><!-- /.carousel -->
-
-
 
     <!-- Marketing messaging and featurettes
     ================================================== -->
@@ -46,70 +12,78 @@
 
     <div class="container marketing">
 
-      <!-- Three columns of text below the carousel -->
       <div class="row">
         <div class="col-lg-4">
           <img class="img-circle" src="http://www.aloa.bz/Mesa_Products/images/combination-lock-icon.jpg" data-src="holder.js/140x140" alt="Secure" style="height: 140px;">
           <h2>Secure</h2>
-          <p>Your privacy is protected by the best-of-breed technologies in cryptography</p>
-          <p><a class="btn btn-default" href="#">View details »</a></p>
+          <p>All your data stored in the vault are encrypted/decrypted directly by your own device such as pc, tablet or phone. No clear texts are kept or transmitted over the Internet</p>
+          <p><a class="btn btn-default" href="#encryption">View details »</a></p>
         </div><!-- /.col-lg-4 -->
         <div class="col-lg-4">
           <img class="img-circle" src="http://images2.wikia.nocookie.net/__cb20100430203355/nonciclopedia/images/thumb/8/8f/Tris.svg/522px-Tris.svg.png" data-src="holder.js/140x140" alt="140x140" style="width: 140px; height: 140px;">
           <h2>Easy</h2>
-          <p>No software to install</p>
-          <p><a class="btn btn-default" href="#">View details »</a></p>
+          <p>Your Internet browser is all you need. Just access the vault from your own personal computer or from a friend's mobile phone. Your data are finally available on your needs</p>
+          <p><a class="btn btn-default" href="#easy">View details »</a></p>
         </div><!-- /.col-lg-4 -->
         <div class="col-lg-4">
           <img class="img-circle" src="http://www.brinksoftware.com/images/features/cloud.jpg" data-src="holder.js/140x140" alt="140x140" style="height: 140px;">
           <h2>Cloud-based</h2>
-          <p>Your secret codes are stored in the cloud. It means that </p>
-          <p><a class="btn btn-default" href="#">View details »</a></p>
+          <p>Encrypted data are stored in dedicated server farms. Hence equally accessible from your home or when you're just in front of an ATM. Data are  backed up, protecting from the accidental loss</p>
+          <p><a class="btn btn-default" href="#cloud">View details »</a></p>
         </div><!-- /.col-lg-4 -->
       </div><!-- /.row -->
-
 
       <!-- START THE FEATURETTES -->
 
       <hr class="featurette-divider">
 
-      <div class="row featurette">
+      <div class="row featurette" id="encryption">
         <div class="col-md-7">
-          <h2 class="featurette-heading">First featurette heading. <span class="text-muted">It'll blow your mind.</span></h2>
-          <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+          <h2 class="featurette-heading">Highest encryption grade <span class="text-muted">Your Bank will envy you!</span></h2>
+          <p class="lead">Foolbits protects your data using the state of the art in the encryption software: the symmetric AES (256 bits) and the asymmetric RSA (2136 bits). Still in doubt or willing to contribute? Check out yourself our <a href="https://github.com/lordkada/foolbits">code repo</a> on GitHub</p>
         </div>
         <div class="col-md-5">
-          <img class="featurette-image img-responsive" src="" data-src="holder.js/500x500/auto" alt="500x500">
+          <img class="featurette-image img-responsive" src="/assets/encryption.jpg" alt="super-secure!">
         </div>
       </div>
 
       <hr class="featurette-divider">
 
-      <div class="row featurette">
+      <div class="row featurette" id="easy">
         <div class="col-md-5">
-          <img class="featurette-image img-responsive" src="" data-src="holder.js/500x500/auto" alt="500x500">
+          <img class="featurette-image img-responsive" src="/assets/foolbits-example.png" alt="Easy as a child's game" style="margin-left: 25%;">
         </div>
         <div class="col-md-7">
-          <h2 class="featurette-heading">Oh yeah, it's that good. <span class="text-muted">See for yourself.</span></h2>
-          <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+          <h2 class="featurette-heading">It's a child's game <span class="text-muted">Do a test drive now!</span></h2>
+          <p class="lead">Foolbits allows you to write a single text page. No unnecessary complications or things to learn, just you and the vault page: type in or "copy and paste" the text and Foolbits will protect it. It has never been easier</p>
         </div>
       </div>
 
       <hr class="featurette-divider">
 
-      <div class="row featurette">
+      <div class="row featurette" id="cloud">
         <div class="col-md-7">
-          <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
-          <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+          <h2 class="featurette-heading">No more excuses <span class="text-muted">Mothball your old text files</span></h2>
+          <p class="lead">Probably you never took too seriously the idea to adopt a real solution to protect your codes for your online banking, ATM PINs, Credit Card control codes or whatever. But what happens if your PC is stolen or your mobile phone is lost? Is it safe to write your secret codes somewhere in your harddisk or as a note in your phone? We don't think so... Now you have Foolbits, the final solution to your secret codes protection</p>
         </div>
         <div class="col-md-5">
-          <img class="featurette-image img-responsive" src="" data-src="holder.js/500x500/auto" alt="500x500">
+          <img class="featurette-image img-responsive" src="/assets/atm-machine2.jpg" alt="Easy as a child's game">
+        </div>
+      </div>
+
+      <hr class="featurette-divider">
+
+      <div class="row featurette" id="free">
+        <div class="col-md-5">
+          <img class="featurette-image img-responsive" src="/assets/oh-yeah-its-free.png" alt="It's free">
+        </div>        
+        <div class="col-md-7">
+          <h2 class="featurette-heading">And last but not least... <span class="text-muted">It's free. Forever.</span></h2>
+          <p class="lead">Your vault will be always free. No subscription fees, no dues. This is our promise. This is your win.</p>
         </div>
       </div>
 
       <hr class="featurette-divider">
 
       <!-- /END THE FEATURETTES -->
-
-
 <% end %>

@@ -1,3 +1,14 @@
+
+a.navbar-brand {
+  padding-top: 13px;
+  padding-bottom: 17px;
+}
+
+a.navbar-brand img {
+  height: 20px;
+  padding: 0px;
+}
+
 img.user {
     padding: 0px;
     float: right;
@@ -47,22 +58,24 @@ img.user {
   overflow: visible;
   left: 32%;
   padding-left: 20px;
+  font-weight: bold;
+}
+
+[data-id='setup'] input {
+    margin-bottom: 10px;
 }
 
 [data-id='setup'] [data-id='ok-passphrase'] {
   visibility: hidden;
 }
 
-
-/*
-[data-id="lock-status"] i {
-    font-size: 24px;
-    margin-left: 10px;
+[data-id="vault"] {
+  margin-bottom: 30px;
 }
-*/
 
 [data-id="locked"] {
     position: relative;
+    top: 30%;
 }
 
 [data-id="locked"] i.icon-lock {
@@ -73,28 +86,17 @@ img.user {
 }
 
 [data-id="locked"] input {
-    position: absolute;
-    left: 34%;
-    width: 40%;
-    top: 75px;
-    font-size: 16px;
-    line-height: 34px;
+  position: absolute;
+  margin-left: 40%;
+  top: 75px;
+  font-size: 16px;
+  line-height: 34px;
+  width: 25%;
 }
 
 [data-id="unlocked"] {
     position: relative;
     top: 10px;
-/*
-    border: 5px dashed darkred;
-*/
-}
-
-
-[data-id="unlocked"] .bar {
-    top: 0px;
-    position: absolute;
-    right: 0px;
-    opacity: 0.65;
 }
 
 [data-id="unlocked"] ul.nav.bar li {
@@ -102,11 +104,9 @@ img.user {
   background-color: lightgray;
 }
 
-/* 
-[data-id="unlocked"] .bar i {
-    color: white;
-} 
-*/
+[data-id="unlocked"] ul.nav {
+  margin-left: 43%;
+}
 
 [data-id="unlocked"] textarea {
     margin: 0px 0px 10px;
@@ -119,13 +119,12 @@ img.user {
     color: gray;
     box-shadow: none;
     font-family: monospace;
-    box-shadow: none;
     -webkit-appearance: none;
+    overflow-y: scroll;
+    border: 1px solid gray;
 }
 
-.navbar.navbar-default.navbar-fixed-bottom {
-    min-height: 0;
-}
+
 /** CUSTOM **/
 
 /* GLOBAL STYLES
@@ -133,11 +132,17 @@ img.user {
 /* Padding below the footer and lighter body text */
 
 body {
-  padding-bottom: 40px;
+  padding-bottom: 0px;
   color: #5a5a5a;
 }
 
+div.page-header {
+  margin: 0px;
+}
 
+.container.main {
+  min-height: 300px;
+}
 
 /* CUSTOMIZE THE NAVBAR
 -------------------------------------------------- */
@@ -181,10 +186,9 @@ div.carousel-caption {
   height: 500px;
 }
 
-
-
-/* MARKETING CONTENT
--------------------------------------------------- */
+.jumbotron {
+  text-align: center;
+}
 
 /* Pad the edges of the mobile views a bit */
 .marketing {
@@ -220,50 +224,47 @@ div.carousel-caption {
   letter-spacing: -1px;
 }
 
-
-
 /* RESPONSIVE CSS
 -------------------------------------------------- */
+
+.img-responsive {
+  max-height: 350px;
+}
+
+@media (max-width: 480px) {
+  [data-id="unlocked"] ul.nav {
+    margin-left: 30%;
+  }
+
+  body {
+    padding-bottom: 40px;
+  }
+
+  [data-id="setup"] .sr-only {
+    left: 30%;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 765px) {
+  [data-id="unlocked"] ul.nav {
+    margin-left: 35%;
+  }
+}
+
 @media (max-width: 1199px) {
 
-    [data-id="setup"] .sr-only {
+  [data-id="setup"] .sr-only {
     left: 45%;
   }
 
-}
-
-@media (min-width: 768px) {
-
-  /* Remove the edge padding needed for mobile */
-  .marketing {
-    padding-left: 0;
-    padding-right: 0;
+  [data-id="locked"] i.icon-lock {
+      left: 43%;
   }
 
-  /* Navbar positioning foo */
-  .navbar-wrapper {
-    margin-top: 20px;
-  }
-  /* The navbar becomes detached from the top, so we round the corners */
-  .navbar-wrapper .navbar {
-    border-radius: 4px;
+  [data-id="locked"] input {
+      width: 100%;
+      left: 0%;
+      margin: 0px;
   }
 
-  /* Bump up size of carousel content */
-  .carousel-caption p {
-    margin-bottom: 20px;
-    font-size: 21px;
-    line-height: 1.4;
-  }
-
-  .featurette-heading {
-    font-size: 50px;
-  }
-
-}
-
-@media (min-width: 992px) {
-  .featurette-heading {
-    margin-top: 120px;
-  }
 }

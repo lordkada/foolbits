@@ -17,8 +17,17 @@ init = (selector) ->
     to_save_flag = false
     editing_flag = false
 
+    resize = () ->
+        zoomLevel = document.documentElement.clientWidth / window.innerWidth
+        window_height = window.innerHeight * zoomLevel
+        console.log "resize: body -> #{window_height} "
+        unlocked_textarea_element.height(window_height - 160)
+
+    $(window).resize () ->
+        resize()
+
     toggle = (element, flag) ->
-        element.css "visibility", if flag then "visible" else "hidden"
+        element.find("a").css "color", if flag then "#428bca" else "lightgray"
 
     reset_vault = () ->
         publicKey = null
@@ -32,6 +41,8 @@ init = (selector) ->
     refresh_ui = () ->
         toggle save_element, to_save_flag
         toggle edit_element, !editing_flag
+        window.scrollTo 0, 0 if !editing_flag
+        resize()
 
     show_locked_vault = () ->
         unlocked_panel_element.fadeOut () ->
@@ -68,6 +79,7 @@ init = (selector) ->
                 type: 'PUT'
                 data: 
                     vault: encrypted
+                    authenticity_token: window.csrf_token
             .done (result) ->
                 if result.status is "ok"
                     to_save_flag = false
@@ -88,10 +100,12 @@ init = (selector) ->
         editing_flag = !editing_flag
         show_data_vault()
         refresh_ui()
+        unlocked_textarea_element.focus() if editing_flag
 
     unlocked_textarea_element.keyup () ->
-        to_save_flag = true
-        refresh_ui()
+        if editing_flag
+            to_save_flag = true
+            refresh_ui()
 
     pending_changes_element.find("[data-id='discard']").click () ->
         reset_vault()

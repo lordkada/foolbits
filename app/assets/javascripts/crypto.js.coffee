@@ -1,8 +1,8 @@
 $(document).ready () ->
-    content = $(".container.marketing")
+    content = $("[data-id='drop_content']")
     $.get "/user", (user) ->
         window.user = user
-        if user?
+        if user? and window.location.pathname is "/"
             if not user.private_key?
                 $.get "/setup", (res) ->
                     content.html res

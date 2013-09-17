@@ -10,8 +10,7 @@ init = (selector) ->
 
     input_element = $(selector).find("[data-id='passphrase']")
     retype_element = $(selector).find("[data-id='retype-passphrase']")
-    progress_bar_element = $(selector).find(".progress .progress-bar")
-    status_element = $(selector).find(".progress .progress-bar .sr-only")
+    status_element = $(selector).find("[data-id='passphrase-strength']")
     weak_alert_element = $(selector).find("[data-id='weak_passphrase_alert']")
 
     ok_button_element = $(selector).find("[data-id='ok-passphrase']")
@@ -27,11 +26,9 @@ init = (selector) ->
         else
             ok_button_element.css "visibility", "hidden"
         
-
     input_element.keyup () ->
         passphrase = input_element.val()
         strength = PasswordStrength.test null, passphrase
-        progress_bar_element.css "width", "#{strength.score}%"
         status_element.html strength.status
         refresh_ui()
 
@@ -55,6 +52,7 @@ init = (selector) ->
                 $.post 'keypair', 
                     public_key: forge.pki.publicKeyToPem(keypair.publicKey).toString()
                     private_key: encrypted_key.toString()
+                    authenticity_token: window.csrf_token
                 , (success) ->
                     if success.status is "ok"
                         step2_done_element.css "visibility", "visible"

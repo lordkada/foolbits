@@ -3,8 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= content_for?(:title) ? yield(:title) : "Foolbits, your vault." %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+
+    <title><%= content_for?(:title) ? yield(:title) : "Foolbits, your digital vault." %></title>
     <%= csrf_meta_tags %>
 
     <%= javascript_include_tag "jquery-2.0.3.min.js" %>
@@ -65,57 +66,76 @@
   </head>
   <body style="">
 
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=617674131586410";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+
     <div class="navbar-wrapper">
-      <div class="container">
-        <div class="navbar navbar-inverse navbar-static-top">
-          <div class="container">
-            <div class="navbar-header">
+      <div class="navbar navbar-inverse navbar-static-top">
+        <div class="container">
+          <div class="navbar-header">
+            <% if signed_in? %>
               <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="#">Foolbits</a>
-              <!--<img class="navbar-brand" src="/assets/foolbits_only.png">-->
-            </div>
-            <% if signed_in? %>
-              <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                  <li><%=link_to t(:logout), signout_url %></li>
-                  <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-cog"></i></a>
-                    <ul class="dropdown-menu">
-                      <li><a href="#">Reset passphrase</a></li>
-                      <li><a href="#">Another action</a></li>
-                      <li><a href="#">Something else here</a></li>
-                      <li class="divider"></li>
-                      <li class="dropdown-header">Nav header</li>
-                      <li><a href="#">Separated link</a></li>
-                      <li><a href="#">One more separated link</a></li>
-                    </ul>
-                  </li>
-                </ul>
-                <img class="user" src="<%=current_user.picture_url%>">
-              </div>
-            <% end %>
+              <% end %>
+            <a data-id="home" class="navbar-brand">Foolbits</a>
+            <!--<img class="navbar-brand" src="/assets/foolbits_only.png">-->
           </div>
+          <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li><a href="/faq">FAQ</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <% if signed_in? %>
+                <li><img class="user" src="<%=current_user.picture_url%>"></li>
+                <li><%=link_to t(:logout), signout_url %></li>
+              <% end %>
+            </ul>
+          </div>          
         </div>
       </div>
     </div>
 
-    <%= bootstrap_flash %>
-    <%= yield %>
+    <div class="container main">
 
-    <div class="container">
+      <%= bootstrap_flash %>
+      <div data-id="drop_content">
+        <%= yield %>
+      </div>
+    
+    </div>
 
-        <a href="https://twitter.com/foolbits" class="twitter-follow-button" data-show-count="true">Follow @foolbits</a>
-        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+    <div style="text-align: center;">
+      <a href="https://twitter.com/foolbits" class="twitter-follow-button" data-show-count="false" data-lang="en">Follow @foolbits</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+      <div class="fb-like" data-href="http://facebook.com/foolbits" data-width="450" data-show-faces="false" data-send="true" style="margin-left: 10px;"></div>
     </div>
 
     <%= javascript_include_tag "application" %>
 
     <script type="text/javascript">
       setTimeout(function () { window.scrollTo(0, 0);}, 1000);
+
+      $(document).ready(function() { 
+        $("[data-id='home']").click(function() {
+          window.location.href = "/"; 
+        });
+      });
+
     </script>
+
+    <script type="text/javascript">
+      window.csrf_token = $("[name='csrf-token']").attr("content")
+    </script>
+
   </body>
 </html>

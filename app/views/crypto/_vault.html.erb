@@ -6,12 +6,13 @@
         <input type="password" placeholder="Type your secret passphrase to unlock">
     </div>
     <div data-id="unlocked" style="display:none;">
-        <ul class="nav nav-pills pull-right bar">
-            <li data-id="lock-save" style="visibility: hidden;"><a><i class="icon-save"></i></a></li>
-            <li data-id="lock-edit" style="visibility: hidden;"><a><i class="icon-pencil"></i></a></li>
-            <li data-id="lock-lock"><a><i class="icon-off"></i></a></li>
-        </ul>
+
         <textarea></textarea>
+            <ul class="nav nav-pills">
+                <li data-id="lock-save"><a><i class="icon-save"></i></a></li>
+                <li data-id="lock-edit"><a><i class="icon-pencil"></i></a></li>
+                <li data-id="lock-lock"><a><i class="icon-off"></i></a></li>
+            </ul>
     </div>
 
     <div id="pending" class="modal fade" data-id="pending_changes" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -22,11 +23,11 @@
                     <h4 class="modal-title">Pending changes</h4>
                 </div>
                 <div class="modal-body">
-                    <p>There're some changes not saved to your vault</p>
+                    <p>There're some changes not saved to your vault. If you don't save them, they will be lost.</p>
                 </div>
                 <div class="modal-footer">
-                    <button data-id="discard" type="button" class="btn btn-default" data-dismiss="modal">Discard changes</button>
-                    <button data-id="save" type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+                    <button data-id="discard" type="button" class="btn btn-default" data-dismiss="modal">Discard</button>
+                    <button data-id="save" type="button" class="btn btn-primary" data-dismiss="modal">Save</button>
                 </div>
             </div>
         </div>
