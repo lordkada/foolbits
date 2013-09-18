@@ -3,9 +3,9 @@
     The "forge" project (https://github.com/digitalbazaar/forge) uses strings to store data (such as keys or encrypted data) while 
     the XMLHttpRequest/arraybuffer uses the "typed arrays" way
 ###
-salt = "this is blood of soul"
 
 generate_key = (passphrase) ->
+    forge.random.getBytesSync 128
     key = forge.pkcs5.pbkdf2 passphrase, salt, 10000, 32
 
 encrypt_text = (text, publicKey) ->
