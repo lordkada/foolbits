@@ -21,6 +21,5 @@
 
 en:
   vault_title: "Your vault"
-  vault_lock: "click here to save & lock"
   logout: "logout"
   weak_passphrase_alert: "<b>Warning</b>: a weak passphrase may expose your vault to serious risks!"

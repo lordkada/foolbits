@@ -4,6 +4,7 @@ init = (selector) ->
     retype = null
     keypair = null
     encrypted_key = null
+    strength = 0
 
     step1_element = $(".step1")
     step2_element = $(".step2")
@@ -22,14 +23,25 @@ init = (selector) ->
     refresh_ui = () ->
         if passphrase? and passphrase is retype
             ok_button_element.css "visibility", "visible"
-            weak_alert_element.toggle(strength.score < 30)
+            weak_alert_element.toggle(strength < 4)
         else
             ok_button_element.css "visibility", "hidden"
         
     input_element.keyup () ->
         passphrase = input_element.val()
-        strength = PasswordStrength.test null, passphrase
-        status_element.html strength.status
+        strength = (zxcvbn(passphrase).score) + 1
+        switch strength
+            when 0, 1
+                icon = "icon-warning-sign"
+                color = "red"
+            when 2, 3
+                icon = "icon-warning-sign"
+                color = "orange"
+            when 4, 5
+                icon = "icon-ok-sign"
+                color = "green"
+
+        status_element.html "<i class='#{icon}' style='color: #{color};'></i> #{strength}/5"
         refresh_ui()
 
     retype_element.keyup () ->

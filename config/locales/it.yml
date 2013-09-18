@@ -1,0 +1,4 @@
+it:
+  vault_title: "La tua cassaforte"
+  logout: "esci"
+  weak_passphrase_alert: "<b>Attenzione</b>: un codice debole può esporre la tua cassaforte a seri rischi"
