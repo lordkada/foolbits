@@ -1,9 +1,10 @@
 <div data-id="vault">
     <div data-id="locked" style="display:none;">
-        <div>
-            <i class="icon-lock"></i>
+        <div class="input-group">
+            <span data-id="passphrase-strength" class="input-group-addon"><i class="icon-lock"></i></span>
+            <input data-id="passphrase" type="password" class="form-control" placeholder="Type your secret passphrase to unlock your vault">
         </div>
-        <input type="password" placeholder="Type your secret passphrase to unlock">
+
     </div>
     <div data-id="unlocked" style="display:none;">
 

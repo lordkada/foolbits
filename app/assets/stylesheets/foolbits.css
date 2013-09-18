@@ -74,10 +74,14 @@ img.user {
 }
 
 [data-id="locked"] {
-    position: relative;
-    top: 30%;
+    height: 200px;
 }
 
+[data-id="locked"] > div {
+    top: 50%;
+}
+
+/*
 [data-id="locked"] i.icon-lock {
     font-size: 72px;
     color: green;
@@ -93,6 +97,7 @@ img.user {
   line-height: 34px;
   width: 25%;
 }
+*/
 
 [data-id="unlocked"] {
     position: relative;
