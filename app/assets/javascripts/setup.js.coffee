@@ -52,29 +52,29 @@ init = (selector) ->
         step1_element.animate {height: 0, opacity: 0}, () ->
             step1_element.css "display", "none"
 
-        step2_element.fadeIn () ->
+            step2_element.fadeIn () ->
 
-            step2_keypair_element.css "visibility", "visible"
-            keypair = forge.rsa.generateKeyPair {bits: 2136, e: 0x10001}
+                step2_keypair_element.css "visibility", "visible"
+                keypair = forge.rsa.generateKeyPair {bits: 2136, e: 0x10001}
 
-            encrypted_key = forge.pki.encryptRsaPrivateKey keypair.privateKey, passphrase
-            setTimeout () ->
+                encrypted_key = forge.pki.encryptRsaPrivateKey keypair.privateKey, passphrase
+                setTimeout () ->
 
-                step2_upload_element.css "visibility", "visible"                
-                $.post 'keypair', 
-                    public_key: forge.pki.publicKeyToPem(keypair.publicKey).toString()
-                    private_key: encrypted_key.toString()
-                    authenticity_token: window.csrf_token
-                , (success) ->
-                    if success.status is "ok"
-                        step2_done_element.css "visibility", "visible"
-                        step2_done_element.find("a").click () ->
-                            location.reload()
+                    step2_upload_element.css "visibility", "visible"                
+                    $.post 'keypair', 
+                        public_key: forge.pki.publicKeyToPem(keypair.publicKey).toString()
+                        private_key: encrypted_key.toString()
+                        authenticity_token: window.csrf_token
+                    , (success) ->
+                        if success.status is "ok"
+                            step2_done_element.css "visibility", "visible"
+                            step2_done_element.find("a").click () ->
+                                location.reload()
 
-                    else
-                        step2_element.append("<div class='alert'>I'm sorry, but something went wrong... try later!</div>")
+                        else
+                            step2_element.append("<div class='alert'>I'm sorry, but something went wrong... try later!</div>")
 
-            , 2000
+                , 2000
 
 
 window.setup = init
