@@ -3,3 +3,6 @@ before_install:
   - gem install bundler
 rvm:
   - 2.0.0
+deploy:
+  provider: heroku
+  secure: "PUwhUKojvEmKuWuqk+X40CEj+qPlxD60unQShKYzDTg5DBMbqy56rcD/+0sTpAfa35yeJoRBaws/pjxMBeAcqpgYt4JB443Awlp8Jd5+m2gTmi0m8A7o1hWFXg0SFNM+FG6jkP4JTQg2Y3xJDDQbWdaGc14d3jIYrlkLCu0cJVc="
