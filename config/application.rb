@@ -22,10 +22,5 @@ module Foolbits
     config.assets.precompile += ["forge/jsbn.js", "forge/aes.js", "forge/asn1.js", "forge/oids.js", "forge/pkcs1.js", "forge/sha1.js",  "forge/rsa.js", "forge/util.js",
         "forge/pki.js", "forge/prng.js", "forge/random.js", "forge/pbkdf2.js", "forge/hmac.js", "forge/pem.js",
         "crypto.js", "crypto_utilities.js", "setup.js", "vault.js", "jquery-2.0.3.min.js", "zxcvbn-async.js"]
-
-    config.action_dispatch.default_headers = {
-        'X-Frame-Options' => 'ALLOW-FROM https://apps.facebook.com'
-    }
-
   end
 end

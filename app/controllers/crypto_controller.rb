@@ -1,8 +1,5 @@
 class CryptoController < ApplicationController
 
-  # required fot the facebook canvas first request
-  skip_before_filter :verify_authenticity_token, :only => [:index]
-
   def index
   end
 
