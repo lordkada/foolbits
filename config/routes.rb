@@ -16,9 +16,10 @@ Foolbits::Application.routes.draw do
     get 'vault', to: "crypto#vault"
     post 'keypair', to: "crypto#keypair"
     put 'vault', to: "crypto#set_vault"
-      
+
     get 'faq', to: "faq#index"
-      
+
     root 'crypto#index'
+    post "" => 'crypto#index'
 
 end
