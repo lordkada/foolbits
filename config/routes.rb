@@ -19,7 +19,7 @@ Foolbits::Application.routes.draw do
 
     get 'faq', to: "faq#index"
 
+    post '' => 'crypto#index'
     root 'crypto#index'
-    post "" => 'crypto#index'
 
 end
