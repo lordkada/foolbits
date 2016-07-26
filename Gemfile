@@ -28,13 +28,13 @@ gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 
-gem "twitter-bootstrap-rails"
+gem "twitter-bootstrap-rails", "2.2.8"
 
 gem "omniauth", "~> 1.3.1"
 
 gem 'omniauth-facebook', "~> 3.0.0"
 
-gem "font-awesome-rails"
+gem "font-awesome-rails", "4.4.0.0"
 
 gem 'figaro'
 
