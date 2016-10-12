@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
-ruby '2.1.7'
+ruby '2.3.0'
 
 # Bundle eQuantitydge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.0'
+gem 'rails', '4.2.6'
 
 # Use sqlite3 as the database for Active Record
 gem 'pg'
@@ -32,7 +32,7 @@ gem "twitter-bootstrap-rails", "2.2.8"
 
 gem "omniauth", "~> 1.3.1"
 
-gem 'omniauth-facebook', "~> 3.0.0"
+gem 'omniauth-facebook', "~> 4.0.0"
 
 gem "font-awesome-rails", "4.4.0.0"
 
@@ -49,6 +49,7 @@ end
 
 group :development, :test do
   gem "teaspoon"
+  gem "teaspoon-jasmine"
 end
 
 # Use ActiveModel has_secure_password

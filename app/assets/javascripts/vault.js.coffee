@@ -20,7 +20,6 @@ init = (selector) ->
     resize = () ->
         zoomLevel = document.documentElement.clientWidth / window.innerWidth
         window_height = window.innerHeight * zoomLevel
-        console.log "resize: body -> #{window_height} "
         unlocked_textarea_element.height(window_height - 160)
 
     $(window).resize () ->
@@ -56,7 +55,6 @@ init = (selector) ->
             show_unlocked_vault()
 
     show_data_vault = () ->
-        console.log editing_flag
         if editing_flag
             unlocked_textarea_element.prop "readonly", null
         else
@@ -72,12 +70,11 @@ init = (selector) ->
 
     save = (callback) ->
         if privateKey?
-            console.log "saving..."
             encrypted = crypto_utils.encrypt_text unlocked_textarea_element.val(), publicKey
             $.ajax
                 url: 'vault'
                 type: 'PUT'
-                data: 
+                data:
                     vault: encrypted
                     authenticity_token: window.csrf_token
             .done (result) ->
@@ -88,7 +85,7 @@ init = (selector) ->
 
     lock_element.click () ->
         if to_save_flag
-            pending_changes_element.modal()           
+            pending_changes_element.modal()
         else
             reset_vault()
 
@@ -112,9 +109,8 @@ init = (selector) ->
 
     pending_changes_element.find("[data-id='save']").click () ->
         save (result) ->
-            console.log result
             if result is "ok"
-                reset_vault()                
+                reset_vault()
 
     reset_vault()
 
