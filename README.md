@@ -1,4 +1,3 @@
-
 #Mothball your password text-file
 
 [![Build Status](https://travis-ci.org/lordkada/foolbits.png)](https://travis-ci.org/lordkada/foolbits])
