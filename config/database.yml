@@ -6,10 +6,11 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: foolbits_development
+  database: foolbits
   pool: 5
   username: postgres
   password: postgres
+  host: localhost
 
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have
