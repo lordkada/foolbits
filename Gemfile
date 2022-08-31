@@ -30,7 +30,7 @@ gem 'jbuilder', '~> 1.2'
 
 gem "twitter-bootstrap-rails", "2.2.8"
 
-gem "omniauth", "~> 1.3.2"
+gem "omniauth", "~> 1.9.2"
 
 gem 'omniauth-facebook', "~> 4.0.0"
 
